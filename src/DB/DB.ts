@@ -169,6 +169,147 @@ export class DB {
     }
   }
 
+  //   Get Boards
+
+  //   async getBoards(collection: Collection, projectId: string) {
+  //     let res = null,
+  //       client = null;
+
+  //     const aggregationQuery: any[] = [];
+
+  //     aggregationQuery.push({ $match: { project: new ObjectId(projectId) } });
+  //     aggregationQuery.push({
+  //       $lookup: {
+  //         from: "lists",
+  //         pipeline: [],
+  //         as: "lists",
+  //       },
+  //     });
+
+  //     try {
+  //       client = await this.init();
+  //       res = await this.query(collection, client)
+  //         .aggregate(aggregationQuery)
+  //         // .find({ project: new ObjectId(projectId) })
+  //         .toArray();
+  //       await this.close(client, "[CLIENT CONNECTION CLOSED]");
+  //       return {
+  //         boards: res,
+  //       };
+  //     } catch (error) {
+  //       console.error(error);
+  //       if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+  //       throw error;
+  //     }
+  //   }
+  async getBoards(collection: Collection, boardID: string) {
+    let res = null,
+      client = null;
+
+    try {
+      client = await this.init();
+      res = await this.query(collection, client)
+        .find({ _id: new ObjectId(boardID) })
+        .toArray();
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        board: res[0],
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  //   Delete Board
+  async deleteBoard(
+    collection: Collection,
+    projectID: string,
+    boardID: string
+  ) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).deleteOne({
+        _id: new ObjectID(boardID),
+      });
+
+      await this.query(collection, client).findOneAndUpdate(
+        { _id: new ObjectId(projectID) },
+        { $pull: { boards: new ObjectId(boardID) } }
+      );
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "Board Deleted",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  //   Add User To Board
+  async addUserToBoard(boardID: string, projectID: string, userID: string) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query("boards", client).findOneAndUpdate(
+        { _id: new ObjectId(boardID) },
+        { $push: { members: userID } }
+      );
+
+      await this.query("projects", client).findOneAndUpdate(
+        { _id: new ObjectId(projectID) },
+        { $push: { members: userID } }
+      );
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "Added User",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  //   Deleted User From Board
+  async deleteUserFromBoard(
+    boardID: string,
+    projectID: string,
+    userID: string
+  ) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query("boards", client).findOneAndUpdate(
+        { _id: new ObjectId(boardID) },
+        { $pull: { members: userID } }
+      );
+
+      await this.query("projects", client).findOneAndUpdate(
+        { _id: new ObjectId(projectID) },
+        { $pull: { members: userID } }
+      );
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "Removed User",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
   //   Insert Card
 
   async inserCard(
