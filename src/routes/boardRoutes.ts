@@ -19,7 +19,7 @@ const boardRouter = (db: DB): Router => {
             title: req.body.title,
             desc: "",
             author: currentUser.id,
-            list: [],
+            lists: [],
             members: [currentUser.id],
             project: new ObjectID(req.body.project),
           },
@@ -42,8 +42,8 @@ const boardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        const projects = await db.getBoards("boards", projectId);
-        res.status(201).json(projects);
+        const boards = await db.getBoards("boards", projectId);
+        res.status(201).json(boards);
       } catch (error) {
         console.error(error);
         res.status(500).json({ err: "something went wrong" });

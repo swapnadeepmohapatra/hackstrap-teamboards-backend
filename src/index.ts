@@ -3,6 +3,7 @@ import cors from "cors";
 import { DB } from "./DB/DB";
 import projectRouter from "./routes/projectRoutes";
 import boardRouter from "./routes/boardRoutes";
+import listRouter from "./routes/listRouter";
 
 // ========================== CONSTANTS ==================================
 
@@ -36,6 +37,9 @@ app.use(generateRoute("project"), projectRouter(db));
 
 // Route: /teamboards/board
 app.use(generateRoute("board"), boardRouter(db));
+
+// Route: /teamboards/list
+app.use(generateRoute("list"), listRouter(db));
 
 // =========================== LISTENER ====================================
 

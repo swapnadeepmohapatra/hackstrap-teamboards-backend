@@ -5,7 +5,7 @@ export interface GetBoard {
   title: String;
   desc?: String;
   author: String;
-  list?: String[];
+  lists?: String[];
   members: String[];
   project: ObjectID;
 }
@@ -14,7 +14,7 @@ export interface AddBoard {
   title: String;
   desc?: String;
   author: String;
-  list?: String[];
+  lists?: String[];
   members: String[];
   project: ObjectID;
 }

@@ -2,6 +2,7 @@ import { MongoClient, ObjectID, ObjectId } from "mongodb";
 import keys from "../config/keys";
 import { AddBoard } from "../model/board";
 import { AddCard } from "../model/card";
+import { AddList } from "../model/list";
 import { AddProject } from "../model/project";
 
 // ========================================= INTERFACES ============================================
@@ -171,36 +172,35 @@ export class DB {
 
   //   Get Boards
 
-  //   async getBoards(collection: Collection, projectId: string) {
-  //     let res = null,
-  //       client = null;
+  // async getBoards(collection: Collection, projectId: string) {
+  //   let res = null,
+  //     client = null;
 
-  //     const aggregationQuery: any[] = [];
+  //   const aggregationQuery: any[] = [];
 
-  //     aggregationQuery.push({ $match: { project: new ObjectId(projectId) } });
-  //     aggregationQuery.push({
-  //       $lookup: {
-  //         from: "lists",
-  //         pipeline: [],
-  //         as: "lists",
-  //       },
-  //     });
+  //   aggregationQuery.push({ $match: { project: new ObjectId(projectId) } });
+  //   aggregationQuery.push({
+  //     $lookup: {
+  //       from: "lists",
+  //       pipeline: [],
+  //       as: "lists",
+  //     },
+  //   });
 
-  //     try {
-  //       client = await this.init();
-  //       res = await this.query(collection, client)
-  //         .aggregate(aggregationQuery)
-  //         // .find({ project: new ObjectId(projectId) })
-  //         .toArray();
-  //       await this.close(client, "[CLIENT CONNECTION CLOSED]");
-  //       return {
-  //         boards: res,
-  //       };
-  //     } catch (error) {
-  //       console.error(error);
-  //       if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-  //       throw error;
-  //     }
+  //   try {
+  //     client = await this.init();
+  //     res = await this.query(collection, client)
+  //       .aggregate(aggregationQuery)
+  //       // .find({ project: new ObjectId(projectId) })
+  //       .toArray();
+  //     await this.close(client, "[CLIENT CONNECTION CLOSED]");
+  //     return {
+  //       boards: res,
+  //     };
+  //   } catch (error) {
+  //     console.error(error);
+  //     if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+  //     throw error;
   //   }
   async getBoards(collection: Collection, boardID: string) {
     let res = null,
@@ -236,7 +236,7 @@ export class DB {
         _id: new ObjectID(boardID),
       });
 
-      await this.query(collection, client).findOneAndUpdate(
+      await this.query("projects", client).findOneAndUpdate(
         { _id: new ObjectId(projectID) },
         { $pull: { boards: new ObjectId(boardID) } }
       );
@@ -310,24 +310,24 @@ export class DB {
     }
   }
 
-  //   Insert Card
-
-  async inserCard(
+  // ========================================= LISTS ============================================
+  //  Insert List
+  async insertList(
     collection: Collection,
-    doc: AddCard,
+    doc: AddList,
     parentDoc?: Collection
   ) {
-    let res = null,
-      client = null;
-
+    let client = null,
+      res = null;
     const upsertFilter = doc;
     try {
       client = await this.init();
       res = await this.query(collection, client).insertOne(upsertFilter);
+
       if (parentDoc) {
         await this.query(parentDoc, client).findOneAndUpdate(
           {
-            _id: upsertFilter.list,
+            _id: upsertFilter.board,
           },
           { $push: { [collection]: new ObjectId(res.insertedId) } }
         );
@@ -336,11 +336,130 @@ export class DB {
       await this.close(client, "[CLIENT CONNECTION CLOSED]");
 
       return {
-        result: "Card Added",
+        result: "List Added",
       };
     } catch (error) {
       if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
       throw error;
     }
   }
+
+  //   Get Lists
+
+  async getLists(collection: Collection, listID: string) {
+    let res = null,
+      client = null;
+
+    const aggregationQuery: any[] = [];
+
+    aggregationQuery.push({ $match: { _id: new ObjectID(listID) } });
+    aggregationQuery.push({
+      $lookup: {
+        from: "cards",
+        pipeline: [],
+        as: "cards",
+      },
+    });
+
+    try {
+      client = await this.init();
+      res = await this.query(collection, client)
+        .aggregate(aggregationQuery)
+        // .find({ members: userId })
+        .toArray();
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        lists: res[0],
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  //   Edit List Title
+  async editListTitle(
+    collection: Collection,
+    listID: string,
+    listTitle: string
+  ) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).findOneAndUpdate(
+        { _id: new ObjectId(listID) },
+        { $set: { title: listTitle } }
+      );
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "List Edited",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  //   Delete List
+  async deleteList(collection: Collection, boardID: string, listID: string) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).deleteOne({
+        _id: new ObjectID(listID),
+      });
+
+      await this.query("boards", client).findOneAndUpdate(
+        { _id: new ObjectId(boardID) },
+        { $pull: { lists: new ObjectId(listID) } }
+      );
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "List Deleted",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  // //   Insert Card
+
+  // async inserCard(
+  //   collection: Collection,
+  //   doc: AddCard,
+  //   parentDoc?: Collection
+  // ) {
+  //   let res = null,
+  //     client = null;
+
+  //   const upsertFilter = doc;
+  //   try {
+  //     client = await this.init();
+  //     res = await this.query(collection, client).insertOne(upsertFilter);
+  //     if (parentDoc) {
+  //       await this.query(parentDoc, client).findOneAndUpdate(
+  //         {
+  //           _id: upsertFilter.list,
+  //         },
+  //         { $push: { [collection]: new ObjectId(res.insertedId) } }
+  //       );
+  //     }
+
+  //     await this.close(client, "[CLIENT CONNECTION CLOSED]");
+
+  //     return {
+  //       result: "Card Added",
+  //     };
+  //   } catch (error) {
+  //     if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+  //     throw error;
+  //   }
+  // }
 }
