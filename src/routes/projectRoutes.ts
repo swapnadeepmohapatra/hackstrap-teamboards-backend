@@ -57,7 +57,7 @@ const projectRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.deleteProject("projects", req.body.projectID);
+        await db.delete("projects", req.body.projectID);
         res.status(200).json({ message: "Project Deleted" });
       } catch (error) {
         console.error(error);

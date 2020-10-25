@@ -99,7 +99,8 @@ const cardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.deleteCard("cards", cardId, listId);
+        // await db.deleteCard("cards", cardId, listId);
+        await db.delete("cards", cardId, "lists", listId);
         res.status(200).json({ message: "Card Deleted" });
       } catch (error) {
         console.error(error);

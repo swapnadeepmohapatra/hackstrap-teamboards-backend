@@ -62,7 +62,12 @@ const boardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.deleteBoard("boards", req.body.projectID, req.body.boardID);
+        await db.delete(
+          "boards",
+          req.body.boardID,
+          "projects",
+          req.body.projectID
+        );
         res.status(200).json({ message: "Board Deleted" });
       } catch (error) {
         console.error(error);

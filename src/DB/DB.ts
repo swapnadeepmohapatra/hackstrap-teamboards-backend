@@ -39,9 +39,9 @@ export class DB {
   // ========================================= INSERT ============================================
   /**
    * @description This function inserts new doccuemnt.
-   * @param { Collection } collection - The collection where the data need to be inserted.
+   * @param { Collection } collection - The collection where the data needs to be inserted.
    * @param { InsertDoc } doc - The doccuemnt that is to be inserted.
-   * @param { Collection } parentCollection - The parent doccuemnt under which the inserted ID will be saved.
+   * @param { Collection } parentCollection - The parent collection under which the inserted ID will be saved.
    * @param { InsertFilter } parentInsertFilter - The filter to search for the parent doccuemnt in the parent collection.
    *
    */
@@ -77,6 +77,49 @@ export class DB {
     }
   }
 
+  // ========================================= DELETE ============================================
+  /**
+   * @description This function deletes doccuemnt.
+   * @param { Collection } collection - The collection from where the data needs to be deleted.
+   * @param { string } childID - The ID of the doccuemnt that is to be deleted.
+   * @param { Collection } parentCollection - The parent collection from where the data needs to be deleted.
+   * @param { string } parentID - The ID of the parent doccuemnt that is to be deleted.
+   *
+   */
+  async delete(
+    collection: Collection,
+    childID: string,
+    parentCollection?: Collection,
+    parentID?: string
+  ) {
+    let client = null,
+      res = null;
+    try {
+      client = await this.init();
+      res = await this.query(collection, client).deleteOne({
+        _id: new ObjectID(childID),
+      });
+
+      if (parentCollection && parentID) {
+        await this.query(parentCollection, client).findOneAndUpdate(
+          { _id: new ObjectId(parentID) },
+          {
+            $pull: { [collection]: new ObjectId(childID) },
+          }
+        );
+      }
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+
+      return {
+        result: "Deleted",
+      };
+    } catch (error) {
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
   // ========================================= PROJECT ============================================
   //   Get Projects
 
@@ -104,27 +147,6 @@ export class DB {
       await this.close(client, "[CLIENT CONNECTION CLOSED]");
       return {
         projects: res,
-      };
-    } catch (error) {
-      console.error(error);
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
-  //   Delete Project
-
-  async deleteProject(collection: Collection, projectID: string) {
-    let client = null;
-
-    try {
-      client = await this.init();
-      await this.query(collection, client).deleteOne({
-        _id: new ObjectId(projectID),
-      });
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      return {
-        message: "Project Deleted",
       };
     } catch (error) {
       console.error(error);
@@ -204,36 +226,6 @@ export class DB {
       await this.close(client, "[CLIENT CONNECTION CLOSED]");
       return {
         board: res[0],
-      };
-    } catch (error) {
-      console.error(error);
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
-  //   Delete Board
-  async deleteBoard(
-    collection: Collection,
-    projectID: string,
-    boardID: string
-  ) {
-    let client = null;
-
-    try {
-      client = await this.init();
-      await this.query(collection, client).deleteOne({
-        _id: new ObjectID(boardID),
-      });
-
-      await this.query("projects", client).findOneAndUpdate(
-        { _id: new ObjectId(projectID) },
-        { $pull: { boards: new ObjectId(boardID) } }
-      );
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      return {
-        message: "Board Deleted",
       };
     } catch (error) {
       console.error(error);
@@ -360,32 +352,6 @@ export class DB {
     }
   }
 
-  //   Delete List
-  async deleteList(collection: Collection, boardID: string, listID: string) {
-    let client = null;
-
-    try {
-      client = await this.init();
-      await this.query(collection, client).deleteOne({
-        _id: new ObjectID(listID),
-      });
-
-      await this.query("boards", client).findOneAndUpdate(
-        { _id: new ObjectId(boardID) },
-        { $pull: { lists: new ObjectId(listID) } }
-      );
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      return {
-        message: "List Deleted",
-      };
-    } catch (error) {
-      console.error(error);
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
   // ========================================= CARDS ============================================
 
   async editCardText(collection: Collection, cardID: string, cardText: string) {
@@ -444,31 +410,6 @@ export class DB {
       await this.close(client, "[CLIENT CONNECTION CLOSED]");
       return {
         message: "Card Edited",
-      };
-    } catch (error) {
-      console.error(error);
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
-  async deleteCard(collection: Collection, cardID: string, listID: string) {
-    let client = null;
-
-    try {
-      client = await this.init();
-      await this.query(collection, client).deleteOne({
-        _id: new ObjectID(cardID),
-      });
-
-      await this.query("boards", client).findOneAndUpdate(
-        { _id: new ObjectId(listID) },
-        { $pull: { ["cards"]: new ObjectId(cardID) } }
-      );
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      return {
-        message: `Deleted`,
       };
     } catch (error) {
       console.error(error);

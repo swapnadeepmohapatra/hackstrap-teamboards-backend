@@ -78,7 +78,7 @@ const listRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.deleteList("lists", req.body.boardID, req.body.listID);
+        await db.delete("lists", req.body.listID, "boards", req.body.boardID);
         res.status(200).json({ message: "List Deleted" });
       } catch (error) {
         console.error(error);
