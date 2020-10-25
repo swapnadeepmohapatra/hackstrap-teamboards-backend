@@ -40,7 +40,7 @@ const listRouter = (db: DB): Router => {
       currentUser = JSON.parse(currentUser);
       try {
         const lists = await db.getLists("lists", listId);
-        res.status(201).json(lists.lists);
+        res.status(200).json(lists.lists);
       } catch (error) {
         console.error(error);
         res.status(500).json({ err: "something went wrong" });
@@ -48,9 +48,9 @@ const listRouter = (db: DB): Router => {
     }
   });
 
-  router.patch("/edit/:listId", async (req, res) => {
+  router.patch("/edit", async (req, res) => {
     let currentUser: any = req.header("user");
-    const listId: string = req.params.listId;
+    const listId: string = req.body.listId;
     const listTitle: string = req.body.listTitle;
 
     if (!currentUser || !listId || !listTitle) {

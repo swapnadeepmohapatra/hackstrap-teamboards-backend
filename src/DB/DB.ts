@@ -429,37 +429,157 @@ export class DB {
     }
   }
 
-  // //   Insert Card
+  // ========================================= CARDS ============================================
 
-  // async inserCard(
-  //   collection: Collection,
-  //   doc: AddCard,
-  //   parentDoc?: Collection
-  // ) {
-  //   let res = null,
-  //     client = null;
+  //   Insert Card
+  async inserCard(
+    collection: Collection,
+    doc: AddCard,
+    parentDoc?: Collection
+  ) {
+    let res = null,
+      client = null;
 
-  //   const upsertFilter = doc;
-  //   try {
-  //     client = await this.init();
-  //     res = await this.query(collection, client).insertOne(upsertFilter);
-  //     if (parentDoc) {
-  //       await this.query(parentDoc, client).findOneAndUpdate(
-  //         {
-  //           _id: upsertFilter.list,
-  //         },
-  //         { $push: { [collection]: new ObjectId(res.insertedId) } }
-  //       );
-  //     }
+    const upsertFilter = doc;
+    try {
+      client = await this.init();
+      res = await this.query(collection, client).insertOne(upsertFilter);
+      if (parentDoc) {
+        await this.query(parentDoc, client).findOneAndUpdate(
+          {
+            _id: upsertFilter.list,
+          },
+          { $push: { [collection]: new ObjectId(res.insertedId) } }
+        );
+      }
 
-  //     await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
 
-  //     return {
-  //       result: "Card Added",
-  //     };
-  //   } catch (error) {
-  //     if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-  //     throw error;
-  //   }
-  // }
+      return {
+        result: "Card Added",
+      };
+    } catch (error) {
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  async editCardText(collection: Collection, cardID: string, cardText: string) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).findOneAndUpdate(
+        { _id: new ObjectId(cardID) },
+        { $set: { text: cardText } }
+      );
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "Card Edited",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  async editCardDate(collection: Collection, cardID: string, dueDate: Date) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).findOneAndUpdate(
+        { _id: new ObjectId(cardID) },
+        { $set: { dueDate: new Date(dueDate) } }
+      );
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "Card Edited",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  async editCardPriority(
+    collection: Collection,
+    cardID: string,
+    priority: Number
+  ) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).findOneAndUpdate(
+        { _id: new ObjectId(cardID) },
+        { $set: { priority: priority } }
+      );
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: "Card Edited",
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  async deleteCard(collection: Collection, cardID: string, listID: string) {
+    let client = null;
+
+    try {
+      client = await this.init();
+      await this.query(collection, client).deleteOne({
+        _id: new ObjectID(cardID),
+      });
+
+      await this.query("boards", client).findOneAndUpdate(
+        { _id: new ObjectId(listID) },
+        { $pull: { ["cards"]: new ObjectId(cardID) } }
+      );
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      return {
+        message: `Deleted`,
+      };
+    } catch (error) {
+      console.error(error);
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
+
+  // ===================== Common Methods =================
+  async insert(
+    collection: Collection,
+    doc: AddProject | AddBoard | AddList | AddCard,
+    parentDoc?: Collection,
+    upsertFilter?: UpsertFilter
+  ) {
+    let client = null,
+      res = null;
+    try {
+      client = await this.init();
+      res = await this.query(collection, client).insertOne(doc);
+
+      if (parentDoc && upsertFilter) {
+        await this.query(parentDoc, client).findOneAndUpdate(upsertFilter, {
+          $push: { [collection]: new ObjectId(res.insertedId) },
+        });
+      }
+
+      await this.close(client, "[CLIENT CONNECTION CLOSED]");
+
+      return {
+        result: "Added",
+      };
+    } catch (error) {
+      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
+      throw error;
+    }
+  }
 }

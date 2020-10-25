@@ -4,6 +4,7 @@ import { DB } from "./DB/DB";
 import projectRouter from "./routes/projectRoutes";
 import boardRouter from "./routes/boardRoutes";
 import listRouter from "./routes/listRouter";
+import cardRouter from "./routes/cardRouter";
 
 // ========================== CONSTANTS ==================================
 
@@ -40,6 +41,9 @@ app.use(generateRoute("board"), boardRouter(db));
 
 // Route: /teamboards/list
 app.use(generateRoute("list"), listRouter(db));
+
+// Route: /teamboards/card
+app.use(generateRoute("card"), cardRouter(db));
 
 // =========================== LISTENER ====================================
 
