@@ -9,7 +9,9 @@ import { AddProject } from "../model/project";
 
 export type Collection = "boards" | "lists" | "cards" | "projects";
 
-export type UpsertFilter = { [key: string]: any };
+export type InsertDoc = AddProject | AddBoard | AddList | AddCard;
+
+export type InsertFilter = { [key: string]: any };
 
 // ========================================= CLASS ============================================
 
@@ -34,19 +36,40 @@ export class DB {
     console.log(...message);
   }
 
-  // ========================================= PROJECT ============================================
-  //   Insert Project
-
-  async insertProject(collection: Collection, doc: AddProject) {
-    let client = null;
-    const upsertFilter = doc;
+  // ========================================= INSERT ============================================
+  /**
+   * @description This function inserts new doccuemnt.
+   * @param { Collection } collection - The collection where the data need to be inserted.
+   * @param { InsertDoc } doc - The doccuemnt that is to be inserted.
+   * @param { Collection } parentCollection - The parent doccuemnt under which the inserted ID will be saved.
+   * @param { InsertFilter } parentInsertFilter - The filter to search for the parent doccuemnt in the parent collection.
+   *
+   */
+  async insert(
+    collection: Collection,
+    doc: InsertDoc,
+    parentCollection?: Collection,
+    parentInsertFilter?: InsertFilter
+  ) {
+    let client = null,
+      res = null;
     try {
       client = await this.init();
-      await this.query(collection, client).insertOne(upsertFilter);
+      res = await this.query(collection, client).insertOne(doc);
+
+      if (parentCollection && parentInsertFilter) {
+        await this.query(parentCollection, client).findOneAndUpdate(
+          parentInsertFilter,
+          {
+            $push: { [collection]: new ObjectId(res.insertedId) },
+          }
+        );
+      }
+
       await this.close(client, "[CLIENT CONNECTION CLOSED]");
 
       return {
-        result: "Project Added",
+        result: "Added",
       };
     } catch (error) {
       if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
@@ -54,6 +77,7 @@ export class DB {
     }
   }
 
+  // ========================================= PROJECT ============================================
   //   Get Projects
 
   async getProjects(collection: Collection, userId: string) {
@@ -136,40 +160,6 @@ export class DB {
   }
 
   // ========================================= BOARDS ============================================
-  // Insert Board
-
-  async insertBoard(
-    collection: Collection,
-    doc: AddBoard,
-    parentDoc?: Collection
-  ) {
-    let client = null,
-      res = null;
-    const upsertFilter = doc;
-    try {
-      client = await this.init();
-      res = await this.query(collection, client).insertOne(upsertFilter);
-
-      if (parentDoc) {
-        await this.query(parentDoc, client).findOneAndUpdate(
-          {
-            _id: upsertFilter.project,
-          },
-          { $push: { [collection]: new ObjectId(res.insertedId) } }
-        );
-      }
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-
-      return {
-        result: "Board Added",
-      };
-    } catch (error) {
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
   //   Get Boards
 
   // async getBoards(collection: Collection, projectId: string) {
@@ -311,39 +301,6 @@ export class DB {
   }
 
   // ========================================= LISTS ============================================
-  //  Insert List
-  async insertList(
-    collection: Collection,
-    doc: AddList,
-    parentDoc?: Collection
-  ) {
-    let client = null,
-      res = null;
-    const upsertFilter = doc;
-    try {
-      client = await this.init();
-      res = await this.query(collection, client).insertOne(upsertFilter);
-
-      if (parentDoc) {
-        await this.query(parentDoc, client).findOneAndUpdate(
-          {
-            _id: upsertFilter.board,
-          },
-          { $push: { [collection]: new ObjectId(res.insertedId) } }
-        );
-      }
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-
-      return {
-        result: "List Added",
-      };
-    } catch (error) {
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
   //   Get Lists
 
   async getLists(collection: Collection, listID: string) {
@@ -431,39 +388,6 @@ export class DB {
 
   // ========================================= CARDS ============================================
 
-  //   Insert Card
-  async inserCard(
-    collection: Collection,
-    doc: AddCard,
-    parentDoc?: Collection
-  ) {
-    let res = null,
-      client = null;
-
-    const upsertFilter = doc;
-    try {
-      client = await this.init();
-      res = await this.query(collection, client).insertOne(upsertFilter);
-      if (parentDoc) {
-        await this.query(parentDoc, client).findOneAndUpdate(
-          {
-            _id: upsertFilter.list,
-          },
-          { $push: { [collection]: new ObjectId(res.insertedId) } }
-        );
-      }
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-
-      return {
-        result: "Card Added",
-      };
-    } catch (error) {
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
   async editCardText(collection: Collection, cardID: string, cardText: string) {
     let client = null;
 
@@ -548,36 +472,6 @@ export class DB {
       };
     } catch (error) {
       console.error(error);
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
-  // ===================== Common Methods =================
-  async insert(
-    collection: Collection,
-    doc: AddProject | AddBoard | AddList | AddCard,
-    parentDoc?: Collection,
-    upsertFilter?: UpsertFilter
-  ) {
-    let client = null,
-      res = null;
-    try {
-      client = await this.init();
-      res = await this.query(collection, client).insertOne(doc);
-
-      if (parentDoc && upsertFilter) {
-        await this.query(parentDoc, client).findOneAndUpdate(upsertFilter, {
-          $push: { [collection]: new ObjectId(res.insertedId) },
-        });
-      }
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-
-      return {
-        result: "Added",
-      };
-    } catch (error) {
       if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
       throw error;
     }

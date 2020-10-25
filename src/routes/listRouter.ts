@@ -13,14 +13,17 @@ const listRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.insertList(
+        await db.insert(
           "lists",
           {
             title: req.body.title,
             cards: [],
             board: new ObjectID(req.body.board),
           },
-          "boards"
+          "boards",
+          {
+            _id: new ObjectID(req.body.board),
+          }
         );
         res.status(201).json({ message: "List Added" });
       } catch (error) {

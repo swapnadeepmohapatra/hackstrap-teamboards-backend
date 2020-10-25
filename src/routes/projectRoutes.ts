@@ -17,7 +17,7 @@ const projectRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.insertProject("projects", {
+        await db.insert("projects", {
           title: req.body.title,
           desc: req.body.desc,
           boards: [],

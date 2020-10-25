@@ -13,14 +13,6 @@ const cardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        // await db.inserCard(
-        //   "cards",
-        //   {
-        //     text: req.body.text,
-        //     list: new ObjectID(req.body.list),
-        //   },
-        //   "lists"
-        // );
         await db.insert(
           "cards",
           {
@@ -29,7 +21,7 @@ const cardRouter = (db: DB): Router => {
           },
           "lists",
           {
-            _id: req.body.list,
+            _id: new ObjectID(req.body.list),
           }
         );
         res.status(201).json({ message: "Card Added" });

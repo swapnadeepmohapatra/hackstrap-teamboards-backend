@@ -13,7 +13,7 @@ const boardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.insertBoard(
+        await db.insert(
           "boards",
           {
             title: req.body.title,
@@ -23,7 +23,10 @@ const boardRouter = (db: DB): Router => {
             members: [currentUser.id],
             project: new ObjectID(req.body.project),
           },
-          "projects"
+          "projects",
+          {
+            _id: new ObjectID(req.body.project),
+          }
         );
         res.status(201).json({ message: "Board Added" });
       } catch (error) {
