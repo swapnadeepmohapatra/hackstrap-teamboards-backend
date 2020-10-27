@@ -87,7 +87,7 @@ const boardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.addUserToBoard(boardID, projectID, userID);
+        await db.changeUserPermission(boardID, projectID, userID, "add");
         res.status(200).json({ message: "Board Deleted" });
       } catch (error) {
         console.error(error);
@@ -107,7 +107,7 @@ const boardRouter = (db: DB): Router => {
     } else {
       currentUser = JSON.parse(currentUser);
       try {
-        await db.deleteUserFromBoard(boardID, projectID, userID);
+        await db.changeUserPermission(boardID, projectID, userID, "remove");
         res.status(200).json({ message: "Board Deleted" });
       } catch (error) {
         console.error(error);

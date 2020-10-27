@@ -9,6 +9,8 @@ import { AddProject } from "../model/project";
 
 export type Collection = "boards" | "lists" | "cards" | "projects";
 
+export type PermissionChangeAction = "add" | "remove";
+
 export type InsertDoc = AddProject | AddBoard | AddList | AddCard;
 
 export type InsertFilter = { [key: string]: any };
@@ -234,56 +236,37 @@ export class DB {
     }
   }
 
-  //   Add User To Board
-  async addUserToBoard(boardID: string, projectID: string, userID: string) {
-    let client = null;
+  //   Chnage User Permissions To Board
+  async changeUserPermission(
+    boardID: string,
+    projectID: string,
+    userID: string,
+    actionType: PermissionChangeAction
+  ) {
+    let client = null,
+      filter = null;
+
+    if (actionType === "add") {
+      filter = { $push: { members: userID } };
+    } else {
+      filter = { $pull: { members: userID } };
+    }
 
     try {
       client = await this.init();
       await this.query("boards", client).findOneAndUpdate(
         { _id: new ObjectId(boardID) },
-        { $push: { members: userID } }
+        filter
       );
 
       await this.query("projects", client).findOneAndUpdate(
         { _id: new ObjectId(projectID) },
-        { $push: { members: userID } }
+        filter
       );
 
       await this.close(client, "[CLIENT CONNECTION CLOSED]");
       return {
         message: "Added User",
-      };
-    } catch (error) {
-      console.error(error);
-      if (client) await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      throw error;
-    }
-  }
-
-  //   Deleted User From Board
-  async deleteUserFromBoard(
-    boardID: string,
-    projectID: string,
-    userID: string
-  ) {
-    let client = null;
-
-    try {
-      client = await this.init();
-      await this.query("boards", client).findOneAndUpdate(
-        { _id: new ObjectId(boardID) },
-        { $pull: { members: userID } }
-      );
-
-      await this.query("projects", client).findOneAndUpdate(
-        { _id: new ObjectId(projectID) },
-        { $pull: { members: userID } }
-      );
-
-      await this.close(client, "[CLIENT CONNECTION CLOSED]");
-      return {
-        message: "Removed User",
       };
     } catch (error) {
       console.error(error);
@@ -353,7 +336,7 @@ export class DB {
   }
 
   // ========================================= CARDS ============================================
-
+  // Edit Card Text
   async editCardText(collection: Collection, cardID: string, cardText: string) {
     let client = null;
 
@@ -374,6 +357,7 @@ export class DB {
     }
   }
 
+  // Edit Card Date
   async editCardDate(collection: Collection, cardID: string, dueDate: Date) {
     let client = null;
 
@@ -394,6 +378,7 @@ export class DB {
     }
   }
 
+  // Edit card Priority
   async editCardPriority(
     collection: Collection,
     cardID: string,
