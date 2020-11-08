@@ -25,7 +25,5 @@
       "setup/*": ["./src/setup/*"],
       "__fixtures__/*": ["./src/__fixtures__/*"]
     }
-    // "experimentalDecorators": true,
-    // "emitDecoratorMetadata": true,
   }
 }

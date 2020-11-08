@@ -1,3 +1,5 @@
+/* eslint-disable new-cap */
+/* eslint-disable require-jsdoc */
 import { DEFAULT_ROUTE } from '../../../../config';
 import {
   AddBoardController,

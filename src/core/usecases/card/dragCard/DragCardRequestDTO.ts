@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable require-jsdoc */
+/* eslint-disable-next-line @typescript-eslint/no-unsafe-call */
 import { RequestDTO } from 'core/definition';
 
 class DragCardRequestDTO implements RequestDTO {

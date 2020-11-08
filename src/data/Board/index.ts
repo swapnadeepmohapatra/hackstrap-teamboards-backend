@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable prefer-const */
+/* eslint-disable one-var */
+/* eslint-disable require-jsdoc */
 import { DB_URL } from '../../config';
 import { IBoard, IProject, IList, ICard } from 'core/entities';
 import { MongoClient, ObjectID } from 'mongodb';

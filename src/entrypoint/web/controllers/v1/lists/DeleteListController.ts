@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 import { UseCaseError } from 'core/definition';
 import { DeleteListUseCase } from 'core/usecases/list';
 import {

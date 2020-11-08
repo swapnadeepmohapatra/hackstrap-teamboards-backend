@@ -1,0 +1,11 @@
+  "jest-runner-eslint": {
+    "cliOptions": {
+      "ignorePath": ".gitignore",
+      "ext": "ts"
+    }
+  },
+
+
+  
+    "lint": "jest --config ./test/jest.lint.js",
+    "lint:fix": "eslint --ignore-path .gitignore . --ext ts --fix",

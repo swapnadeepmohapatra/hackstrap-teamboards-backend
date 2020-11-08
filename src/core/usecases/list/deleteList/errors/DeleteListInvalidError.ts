@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 import { UseCaseError } from 'core/definition';
 
 class DeleteListInvalidError extends UseCaseError {

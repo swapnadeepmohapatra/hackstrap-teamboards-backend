@@ -1,3 +1,3 @@
-import { main } from "./config/Main";
+import { main } from './config/Main';
 
-main();
+void main();

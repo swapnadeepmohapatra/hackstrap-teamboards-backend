@@ -1,3 +1,6 @@
+/* eslint-disable valid-jsdoc */
+/* eslint-disable camelcase */
+/* eslint-disable require-jsdoc */
 export enum LOG_LEVEL {
   ERROR = 1,
   WARN,
@@ -26,7 +29,7 @@ class Logger {
 
   constructor(config?: LoggerConfig) {
     this.LOG_LEVEL = config?.LOG_LEVEL || LOG_LEVEL.INFO;
-    this.prefix = config?.prefix || "";
+    this.prefix = config?.prefix || '';
   }
 
   /**
@@ -53,7 +56,7 @@ class Logger {
     if (!msg) {
       this.info(
         `${code} is not a registered code, add it using the register methor or use appropriate method`,
-        "INVALID_CODE"
+        'INVALID_CODE',
       );
 
       return;

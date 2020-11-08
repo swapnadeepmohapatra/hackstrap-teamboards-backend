@@ -1,3 +1,5 @@
+/* eslint-disable new-cap */
+/* eslint-disable require-jsdoc */
 import { DEFAULT_ROUTE } from '../../../../config';
 import BaseRouter from 'entrypoint/web/definitions/Router';
 import { Router } from 'express';

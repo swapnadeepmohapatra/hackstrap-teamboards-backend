@@ -6,7 +6,18 @@ import {
   ProjectRouter,
 } from 'entrypoint/web/routers/v1';
 
+/**
+ * WebAppSetup class is the class that takes in all the routers
+ */
 class WebAppSetup {
+  /**
+   * @param {ExpressAppConfig} config
+   * @param {ProjectRouter} projectRouter
+   * @param {BoardRouter} boardRouter
+   * @param {ListRouter} listRouter
+   * @param {CardRouter} cardRouter
+   * @return {ExpressApp}
+   */
   static getExpressApp(
     config: ExpressAppConfig,
     projectRouter: ProjectRouter,

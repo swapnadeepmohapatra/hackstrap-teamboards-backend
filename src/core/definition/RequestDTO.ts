@@ -1,5 +1,5 @@
 interface RequestDTO {
-  validate(): Boolean;
+  validate(): Error | null;
 }
 
 export default RequestDTO;

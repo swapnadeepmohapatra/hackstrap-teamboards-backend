@@ -1,3 +1,5 @@
+/* eslint-disable require-jsdoc */
+/* eslint-disable new-cap */
 import { DEFAULT_ROUTE } from '../../../../config';
 import {
   AddProjectController,

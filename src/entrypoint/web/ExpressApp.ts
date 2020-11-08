@@ -1,3 +1,5 @@
+/* eslint-disable require-jsdoc */
+
 import { Application, default as express } from 'express';
 import cors from 'cors';
 import { Logger } from 'src/utils';

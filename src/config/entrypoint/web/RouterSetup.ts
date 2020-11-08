@@ -25,7 +25,17 @@ import {
   DragCardController,
 } from 'entrypoint/web';
 
+/**
+ * RouterSetup class is the class that setups up all the routers
+ */
 class RouterSetup {
+  /**
+   * @param {AddProjectController} addProjectController
+   * @param {GetProjectController} getProjectController
+   * @param {DeleteProjectController} deleteProjectController
+   * @param {EditProjectController} editProjectController
+   * @return {ProjectRouter}
+   */
   static getProjectRouter(
     addProjectController: AddProjectController,
     getProjectController: GetProjectController,
@@ -40,6 +50,14 @@ class RouterSetup {
     );
   }
 
+  /**
+   * @param {AddBoardController} addBoardController
+   * @param {GetBoardController} getBoardController
+   * @param {DeleteBoardController} deleteBoardController
+   * @param {RemoveUserController} removeUserController
+   * @param {AddUserController} addUserController
+   * @return {BoardRouter}
+   */
   static getBoardRouter(
     addBoardController: AddBoardController,
     getBoardController: GetBoardController,
@@ -56,6 +74,14 @@ class RouterSetup {
     );
   }
 
+  /**
+   * @param {AddListController} addListController
+   * @param {GetListController} getListController
+   * @param {EditListController} editListController
+   * @param {DeleteListController} deleteListController
+   * @param {DragListController} dragListController
+   * @return {ListRouter}
+   */
   static getListRouter(
     addListController: AddListController,
     getListController: GetListController,
@@ -72,6 +98,15 @@ class RouterSetup {
     );
   }
 
+  /**
+   * @param {AddCardController} addCardController
+   * @param {DeleteCardController} deleteCardController
+   * @param {EditCardTextController} editCardTextController
+   * @param {EditCardDateController} editCardDateController
+   * @param {EditCardPriorityController} editCardPriorityController
+   * @param {DragCardController} dragCardController
+   * @return {CardRouter}
+   */
   static getCardRouter(
     addCardController: AddCardController,
     deleteCardController: DeleteCardController,

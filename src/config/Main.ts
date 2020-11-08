@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable require-jsdoc */
 import { PORT } from 'src/config';
 import {
   ProjectUseCaseSetup,

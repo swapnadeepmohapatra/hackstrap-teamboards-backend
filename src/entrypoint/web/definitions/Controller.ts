@@ -1,3 +1,8 @@
+/* eslint-disable no-invalid-this */
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable valid-jsdoc */
+/* eslint-disable require-jsdoc */
 import { UseCase } from 'core/definition';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { Logger } from 'src/utils';
@@ -17,7 +22,8 @@ abstract class BaseController<T extends UseCase = UseCase> {
 
   constructor(protected usecase: T) {}
 
-  protected abstract async processRequest(
+  // protected abstract async processRequest(
+  protected abstract processRequest(
     req: Request,
     res: Response,
     next: NextFunction,

@@ -1,3 +1,7 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable require-jsdoc */
 import { Result, UseCase } from 'core/definition';
 import { GetBoardRequestDTO } from '.';
 import BoardEntityGateway from '../BoardEntityGateway';
