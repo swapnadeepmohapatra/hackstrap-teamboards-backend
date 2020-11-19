@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable prefer-const */
-/* eslint-disable one-var */
 /* eslint-disable require-jsdoc */
 
 import { DB_URL } from '../../config';
@@ -43,14 +41,14 @@ class CardDBEntityGateway implements CardEntityGateway {
     card: ICard,
     listID: ObjectID,
   ): Promise<void | AddCardGatewayError> {
-    let client = null,
-      collection: Collection = 'cards',
-      parentCollection: Collection = 'lists',
-      doc: InsertDoc = card,
-      parentInsertFilter = {
-        _id: new ObjectID(listID),
-      },
-      res = null;
+    let client = null;
+    const collection: Collection = 'cards';
+    const parentCollection: Collection = 'lists';
+    const doc: InsertDoc = card;
+    const parentInsertFilter = {
+      _id: new ObjectID(listID),
+    };
+    let res = null;
 
     try {
       client = await this.init();
@@ -74,8 +72,8 @@ class CardDBEntityGateway implements CardEntityGateway {
     cardID: string,
     dueDate: Date,
   ): Promise<void | AddCardGatewayError> {
-    let client = null,
-      collection: Collection = 'cards';
+    let client = null;
+    const collection: Collection = 'cards';
 
     try {
       client = await this.init();
@@ -96,8 +94,8 @@ class CardDBEntityGateway implements CardEntityGateway {
     cardID: string,
     priority: number,
   ): Promise<void | AddCardGatewayError> {
-    let client = null,
-      collection: Collection = 'cards';
+    let client = null;
+    const collection: Collection = 'cards';
 
     try {
       client = await this.init();
@@ -118,8 +116,8 @@ class CardDBEntityGateway implements CardEntityGateway {
     cardID: string,
     cardText: string,
   ): Promise<void | AddCardGatewayError> {
-    let client = null,
-      collection: Collection = 'cards';
+    let client = null;
+    const collection: Collection = 'cards';
 
     try {
       client = await this.init();
@@ -140,11 +138,11 @@ class CardDBEntityGateway implements CardEntityGateway {
     cardID: string,
     listID: string,
   ): Promise<void | DeleteCardGatewayError> {
-    let client = null,
-      collection: Collection = 'lists',
-      childID = cardID,
-      parentCollection: Collection = 'boards',
-      parentID = listID;
+    let client = null;
+    const collection: Collection = 'lists';
+    const childID = cardID;
+    const parentCollection: Collection = 'boards';
+    const parentID = listID;
     try {
       client = await this.init();
       await this.query(collection, client).deleteOne({
@@ -171,10 +169,10 @@ class CardDBEntityGateway implements CardEntityGateway {
     droppableIndexEnd: number,
     droppableIndexStart: number,
   ): Promise<void | AddCardGatewayError> {
-    let client = null,
-      res = null,
-      _cards = null,
-      collection: Collection = 'cards';
+    let client = null;
+    let res = null;
+    let _cards = null;
+    const collection: Collection = 'cards';
 
     try {
       client = await this.init();
@@ -196,8 +194,8 @@ class CardDBEntityGateway implements CardEntityGateway {
           { $set: { cards: _cards } },
         );
       } else {
-        let _cards1 = null,
-          _cards2 = null;
+        let _cards1 = null;
+        let _cards2 = null;
 
         res = await this.query(collection, client).findOne({
           _id: new ObjectID(droppableIdStart),

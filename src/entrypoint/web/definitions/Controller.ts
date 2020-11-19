@@ -6,7 +6,9 @@
 import { UseCase } from 'core/definition';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { Logger } from 'src/utils';
-
+/**
+ * @param  {RequestHandler} middleware
+ */
 export function awaitHandlerFactory(middleware: RequestHandler) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -16,6 +18,9 @@ export function awaitHandlerFactory(middleware: RequestHandler) {
     }
   };
 }
+/**
+ * @param  {this.constructor.name.toString(} {prefix
+ */
 
 abstract class BaseController<T extends UseCase = UseCase> {
   protected logger = new Logger({ prefix: this.constructor.name.toString() });

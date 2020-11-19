@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -15,8 +14,8 @@ class EditListUseCase
   async execute(req: DeleteListRequestDTO): Promise<DeleteListResponseDTO> {
     if (!req.validate()) return Result.fail(new EditListInvalidError(req));
 
-    let listID = req.body.listID;
-    let listTitle = req.body.listTitle;
+    const listID = req.body.listID;
+    const listTitle = req.body.listTitle;
 
     const res = await this.listEntityGateway.editList(listID, listTitle);
 

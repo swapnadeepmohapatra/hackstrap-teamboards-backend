@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -15,7 +14,7 @@ class GetProjectUseCase
   async execute(req: GetProjectRequestDTO): Promise<GetProjectResponseDTO> {
     if (!req.validate()) return Result.fail(new GetProjectInvalidError(req));
 
-    let currentUser: any = JSON.parse(req.user);
+    const currentUser: any = JSON.parse(req.user);
 
     const res = await this.projectEntityGateway.getProject(currentUser.id);
 

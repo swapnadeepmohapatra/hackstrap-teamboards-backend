@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
 /* eslint-disable-next-line @typescript-eslint/no-unsafe-call */
@@ -15,7 +14,7 @@ class GetBoardRequestDTO implements RequestDTO {
     this.user = obj.header('user');
   }
 
-  validate(): Boolean {
+  validate(): boolean {
     if (!this.body) return false;
     if (!this.user) return false;
 

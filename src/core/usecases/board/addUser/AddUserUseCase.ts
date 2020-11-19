@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -14,9 +13,9 @@ class AddUserUseCase implements UseCase<AddUserRequestDTO, AddUserResponseDTO> {
   async execute(req: AddUserRequestDTO): Promise<AddUserResponseDTO> {
     if (!req.validate()) return Result.fail(new AddUserInvalidError(req));
 
-    let boardID = req.body.boardID;
-    let projectID = req.body.projectID;
-    let currentUser: any = JSON.parse(req.user);
+    const boardID: string = req.body.boardID;
+    const projectID: string = req.body.projectID;
+    const currentUser: any = JSON.parse(req.user);
 
     const res = await this.boardEntityGateway.addUser(
       boardID,

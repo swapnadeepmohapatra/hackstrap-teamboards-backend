@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -16,7 +15,7 @@ class AddProjectUseCase
   async execute(req: AddProjectRequestDTO): Promise<AddProjectResponseDTO> {
     if (!req.validate()) return Result.fail(new AddProjectInvalidError(req));
 
-    let currentUser: any = JSON.parse(req.user);
+    const currentUser: any = JSON.parse(req.user);
 
     const payload: IProject = {
       title: req.body.title,

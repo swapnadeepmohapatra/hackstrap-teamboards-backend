@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { Result } from 'core/definition';
+import Board from 'core/entities/Board';
 import { GetBoardGatewayError } from './errors';
 
 export interface BoardResponse {
-  board: object;
+  board: Board;
 }
 
 type GetBoardResponseDTO = Result<void | BoardResponse, GetBoardGatewayError>;

@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable prefer-const */
-/* eslint-disable one-var */
 /* eslint-disable require-jsdoc */
 import { DB_URL } from '../../config';
 import { IBoard, IProject, IList, ICard } from 'core/entities';
@@ -43,14 +41,14 @@ class BoardDBEntityGateway implements BoardEntityGateway {
     Board: IBoard,
     projectID: ObjectID,
   ): Promise<void | AddBoardGatewayError> {
-    let client = null,
-      collection = 'boards',
-      parentCollection = 'projects',
-      doc = Board,
-      parentInsertFilter = {
-        _id: new ObjectID(projectID),
-      },
-      res = null;
+    let client = null;
+    const collection = 'boards';
+    const parentCollection = 'projects';
+    const doc = Board;
+    const parentInsertFilter = {
+      _id: new ObjectID(projectID),
+    };
+    let res = null;
 
     try {
       client = await this.init();
@@ -73,10 +71,10 @@ class BoardDBEntityGateway implements BoardEntityGateway {
   async getBoard(
     boardID: string,
   ): Promise<void | BoardResponse | GetBoardGatewayError> {
-    let boardId = boardID,
-      res = null,
-      collection = 'boards',
-      client = null;
+    const boardId = boardID;
+    let res = null;
+    const collection = 'boards';
+    let client = null;
 
     try {
       client = await this.init();
@@ -98,11 +96,11 @@ class BoardDBEntityGateway implements BoardEntityGateway {
     boardID: string,
     projectID: string,
   ): Promise<void | DeleteBoardGatewayError> {
-    let client = null,
-      collection = 'boards',
-      childID = boardID,
-      parentCollection = 'projects',
-      parentID = projectID;
+    let client = null;
+    const collection = 'boards';
+    const childID = boardID;
+    const parentCollection = 'projects';
+    const parentID = projectID;
     try {
       client = await this.init();
       await this.query(collection, client).deleteOne({
@@ -127,9 +125,10 @@ class BoardDBEntityGateway implements BoardEntityGateway {
     boardID: string,
     boardTitle: string,
   ): Promise<void | EditBoardGatewayError> {
-    let client = null,
-      collection = 'boards',
-      boardId = boardID;
+    let client = null;
+    const collection = 'boards';
+    const boardId = boardID;
+
     try {
       client = await this.init();
       await this.query(collection, client).findOneAndUpdate(
@@ -149,8 +148,9 @@ class BoardDBEntityGateway implements BoardEntityGateway {
     projectID: string,
     userID: string,
   ): Promise<void | EditBoardGatewayError> {
-    let client = null,
-      filter = { $push: { members: userID } };
+    let client = null;
+    const filter = { $push: { members: userID } };
+
     try {
       client = await this.init();
       await this.query('boards', client).findOneAndUpdate(
@@ -175,8 +175,9 @@ class BoardDBEntityGateway implements BoardEntityGateway {
     projectID: string,
     userID: string,
   ): Promise<void | EditBoardGatewayError> {
-    let client = null,
-      filter = { $pull: { members: userID } };
+    let client = null;
+    const filter = { $pull: { members: userID } };
+
     try {
       client = await this.init();
       await this.query('boards', client).findOneAndUpdate(

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable require-jsdoc */
 import { PORT } from 'src/config';
 import {
   ProjectUseCaseSetup,
@@ -10,7 +8,10 @@ import {
 import { DatabaseSetup } from './data';
 import { ControllerSetup, RouterSetup, WebAppSetup } from './entrypoint/web';
 
-export async function main(): Promise<void> {
+/**
+ * Main Function
+ */
+export function main(): void {
   // ================ DATABASE SETUP ====================
   const projectDB = DatabaseSetup.getProjectDB();
   const boardDB = DatabaseSetup.getBoardDB();

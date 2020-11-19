@@ -1,1 +1,1 @@
-export { default as DatabaseSetup } from "./DatabaseSetup";
+export { default as DatabaseSetup } from './DatabaseSetup';

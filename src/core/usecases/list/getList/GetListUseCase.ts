@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -14,7 +13,7 @@ class GetListUseCase implements UseCase<GetListRequestDTO, GetListResponseDTO> {
   async execute(req: GetListRequestDTO): Promise<GetListResponseDTO> {
     if (!req.validate()) return Result.fail(new GetListInvalidError(req));
 
-    let listID = req.body.listID;
+    const listID = req.body.listID;
 
     const res = await this.listEntityGateway.getList(listID);
 

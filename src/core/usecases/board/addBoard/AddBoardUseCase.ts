@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -17,7 +16,7 @@ class AddBoardUseCase
   async execute(req: AddBoardRequestDTO): Promise<AddBoardResponseDTO> {
     if (!req.validate()) return Result.fail(new AddBoardInvalidError(req));
 
-    let currentUser: any = JSON.parse(req.user);
+    const currentUser: any = JSON.parse(req.user);
 
     const payload: IBoard = {
       title: req.body.title,

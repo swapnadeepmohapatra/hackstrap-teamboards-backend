@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -17,7 +16,7 @@ class DeleteProjectUseCase
   ): Promise<DeleteProjectResponseDTO> {
     if (!req.validate()) return Result.fail(new DeleteProjectInvalidError(req));
 
-    let projectID = req.body.projectID;
+    const projectID = req.body.projectID;
 
     const res = await this.projectEntityGateway.deleteProject(projectID);
 

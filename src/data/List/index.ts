@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable prefer-const */
-/* eslint-disable one-var */
 /* eslint-disable require-jsdoc */
 
 import { DB_URL } from '../../config';
@@ -47,14 +45,14 @@ class ListDBEntityGateway implements ListEntityGateway {
     list: IList,
     projectID: ObjectID,
   ): Promise<void | AddListGatewayError> {
-    let client = null,
-      collection: collection = 'lists',
-      parentCollection: collection = 'boards',
-      doc = list,
-      parentInsertFilter = {
-        _id: new ObjectID(projectID),
-      },
-      res = null;
+    let client = null;
+    let res = null;
+    const collection: collection = 'lists';
+    const parentCollection: collection = 'boards';
+    const doc = list;
+    const parentInsertFilter = {
+      _id: new ObjectID(projectID),
+    };
 
     try {
       client = await this.init();
@@ -77,9 +75,9 @@ class ListDBEntityGateway implements ListEntityGateway {
   async getList(
     listID: string,
   ): Promise<void | ListResponse | GetListGatewayError> {
-    let res = null,
-      client = null,
-      collection: collection = 'lists';
+    let res = null;
+    let client = null;
+    const collection: collection = 'lists';
 
     const aggregationQuery: any[] = [];
 
@@ -112,9 +110,10 @@ class ListDBEntityGateway implements ListEntityGateway {
     listID: string,
     listTitle: string,
   ): Promise<void | EditListGatewayError> {
-    let client = null,
-      collection: collection = 'lists',
-      listId = listID;
+    let client = null;
+    const collection: collection = 'lists';
+    const listId = listID;
+
     try {
       client = await this.init();
       await this.query(collection, client).findOneAndUpdate(
@@ -133,11 +132,12 @@ class ListDBEntityGateway implements ListEntityGateway {
     listID: string,
     boardID: string,
   ): Promise<void | DeleteListGatewayError> {
-    let client = null,
-      collection: collection = 'lists',
-      childID = listID,
-      parentCollection: collection = 'boards',
-      parentID = boardID;
+    let client = null;
+    const collection: collection = 'lists';
+    const childID = listID;
+    const parentCollection: collection = 'boards';
+    const parentID = boardID;
+
     try {
       client = await this.init();
       await this.query(collection, client).deleteOne({
@@ -163,10 +163,11 @@ class ListDBEntityGateway implements ListEntityGateway {
     droppableIndexStart: number,
     droppableIndexEnd: number,
   ): Promise<void | DragListGatewayError> {
-    let client = null,
-      res = null,
-      _list = null,
-      collection: collection = 'boards';
+    let client = null;
+    let res = null;
+    let _list = null;
+
+    const collection: collection = 'boards';
 
     try {
       client = await this.init();

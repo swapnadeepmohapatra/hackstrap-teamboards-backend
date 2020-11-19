@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable prefer-const */
-/* eslint-disable one-var */
 /* eslint-disable require-jsdoc */
 
 import { DB_URL } from '../../config';
@@ -47,9 +45,9 @@ class ProjectDBEntityGateway implements ProjectEntityGateway {
   }
 
   async addProject(project: IProject): Promise<void | AddProjectGatewayError> {
-    let client = null,
-      collection = 'projects',
-      doc = project;
+    let client = null;
+    const collection = 'projects';
+    const doc = project;
 
     try {
       client = await this.init();
@@ -65,9 +63,9 @@ class ProjectDBEntityGateway implements ProjectEntityGateway {
   async getProject(
     userID: string,
   ): Promise<void | ProjectResponse | GetProjectGatewayError> {
-    let userId = userID,
-      res = null,
-      client = null;
+    const userId = userID;
+    let res = null;
+    let client = null;
 
     const aggregationQuery: any[] = [];
 
@@ -99,9 +97,10 @@ class ProjectDBEntityGateway implements ProjectEntityGateway {
   async deleteProject(
     projectID: string,
   ): Promise<void | DeleteProjectGatewayError> {
-    let client = null,
-      collection = 'projects',
-      projectId = projectID;
+    let client = null;
+    const collection = 'projects';
+    const projectId = projectID;
+
     try {
       client = await this.init();
       await this.query(collection, client).deleteOne({
@@ -119,9 +118,10 @@ class ProjectDBEntityGateway implements ProjectEntityGateway {
     projectID: string,
     projectTitle: string,
   ): Promise<void | EditProjectGatewayError> {
-    let client = null,
-      collection = 'projects',
-      projectId = projectID;
+    let client = null;
+    const collection = 'projects';
+    const projectId = projectID;
+
     try {
       client = await this.init();
       await this.query(collection, client).findOneAndUpdate(

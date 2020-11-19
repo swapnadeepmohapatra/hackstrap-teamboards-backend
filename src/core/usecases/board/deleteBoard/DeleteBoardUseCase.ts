@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -15,8 +14,8 @@ class DeleteBoardUseCase
   async execute(req: DeleteBoardRequestDTO): Promise<DeleteBoardResponseDTO> {
     if (!req.validate()) return Result.fail(new DeleteBoardInvalidError(req));
 
-    let boardID = req.body.boardID;
-    let projectID = req.body.projectID;
+    const boardID = req.body.boardID;
+    const projectID = req.body.projectID;
 
     const res = await this.boardEntityGateway.deleteBoard(boardID, projectID);
 

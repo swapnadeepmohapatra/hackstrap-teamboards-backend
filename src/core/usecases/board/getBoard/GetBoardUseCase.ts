@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
@@ -15,7 +14,7 @@ class GetBoardUseCase
   async execute(req: GetBoardRequestDTO): Promise<GetBoardResponseDTO> {
     if (!req.validate()) return Result.fail(new GetBoardInvalidError(req));
 
-    let boardID = req.body.boardID;
+    const boardID = req.body.boardID;
 
     const res = await this.boardEntityGateway.getBoard(boardID);
 
