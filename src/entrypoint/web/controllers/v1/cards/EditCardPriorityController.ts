@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
 import { UseCaseError } from '../../../../../core/definition';
 import { EditCardPriorityUseCase } from '../../../../../core/usecases/card';
