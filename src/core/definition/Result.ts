@@ -1,4 +1,4 @@
-import UseCaseError from 'core/definition/UseCaseError';
+import UseCaseError from '../../core/definition/UseCaseError';
 
 /**
  * Result class is the generic class for creating the use case results

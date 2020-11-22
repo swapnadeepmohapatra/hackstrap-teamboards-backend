@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   AddUserInvalidError,
   AddUserRequestDTO,
   AddUserUseCase,
-} from 'core/usecases/board';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/board';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class AddUserController extends BaseController<AddUserUseCase> {

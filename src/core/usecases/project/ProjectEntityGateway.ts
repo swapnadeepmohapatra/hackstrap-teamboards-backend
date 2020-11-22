@@ -1,4 +1,4 @@
-import { IProject } from 'core/entities';
+import { IProject } from '../../core/entities';
 import { AddProjectGatewayError } from './addProject';
 import { DeleteProjectGatewayError } from './deleteProject';
 import { EditProjectGatewayError } from './editProject';

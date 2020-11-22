@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
-import { GetBoardRequestDTO } from '.';
+import { Result, UseCase } from '../../../definition';
+import GetBoardRequestDTO from './GetBoardRequestDTO';
 import BoardEntityGateway from '../BoardEntityGateway';
 import { GetBoardGatewayError, GetBoardInvalidError } from './errors';
 import GetBoardResponseDTO from './GetBoardResponseDTO';

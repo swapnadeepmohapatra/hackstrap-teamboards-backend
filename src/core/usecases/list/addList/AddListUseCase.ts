@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
-import { IList } from 'core/entities';
+import { Result, UseCase } from '../../../definition';
+import { IList } from '../../../entities';
 import { ObjectID } from 'mongodb';
 import ListEntityGateway from '../ListEntityGateway';
 import AddListRequestDTO from './AddListRequestDTO';

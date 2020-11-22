@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
-import { EditCardPriorityUseCase } from 'core/usecases/card';
+import { UseCaseError } from '../../../../../core/definition';
+import { EditCardPriorityUseCase } from '../../../../../core/usecases/card';
 import {
   EditCardPriorityInvalidError,
   EditCardPriorityRequestDTO,
-} from 'core/usecases/card';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/card';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class EditCardPriorityController extends BaseController<

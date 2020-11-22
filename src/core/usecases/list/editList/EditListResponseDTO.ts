@@ -1,4 +1,4 @@
-import { Result } from 'core/definition';
+import { Result } from '../../core/definition';
 import { EditListGatewayError, EditListInvalidError } from './errors';
 
 type EditListResponseDTO = Result<

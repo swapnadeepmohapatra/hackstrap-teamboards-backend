@@ -1,4 +1,4 @@
-import { PORT } from 'src/config';
+import { PORT } from '../config';
 import {
   ProjectUseCaseSetup,
   BoardUseCaseSetup,

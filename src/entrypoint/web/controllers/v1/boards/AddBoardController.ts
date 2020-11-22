@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   AddBoardInvalidError,
   AddBoardRequestDTO,
   AddBoardUseCase,
-} from 'core/usecases/board';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/board';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class AddBoardController extends BaseController<AddBoardUseCase> {

@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
-import { DeleteCardUseCase } from 'core/usecases/card';
+import { UseCaseError } from '../../../../../core/definition';
+import { DeleteCardUseCase } from '../../../../../core/usecases/card';
 import {
   DeleteCardInvalidError,
   DeleteCardRequestDTO,
-} from 'core/usecases/card';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/card';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class DeleteCardController extends BaseController<DeleteCardUseCase> {

@@ -4,7 +4,7 @@ import {
   CardDBEntityGateway,
   ListDBEntityGateway,
   ProjectDBEntityGateway,
-} from 'data/index';
+} from '../../data';
 
 class DatabaseSetup {
   static getProjectDB(): ProjectDBEntityGateway {

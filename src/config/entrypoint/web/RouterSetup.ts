@@ -23,7 +23,7 @@ import {
   EditCardDateController,
   EditCardPriorityController,
   DragCardController,
-} from 'entrypoint/web';
+} from '../../../entrypoint/web';
 
 /**
  * RouterSetup class is the class that setups up all the routers

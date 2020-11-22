@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
-import { IBoard } from 'core/entities';
+import { Result, UseCase } from '../../../definition';
+import { IBoard } from '../../../entities';
 import { ObjectID } from 'mongodb';
 import BoardEntityGateway from '../BoardEntityGateway';
 import AddBoardRequestDTO from './AddBoardRequestDTO';

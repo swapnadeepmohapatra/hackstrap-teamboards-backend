@@ -4,7 +4,7 @@
 /* eslint-disable require-jsdoc */
 
 import { DB_URL } from '../../config';
-import { IProject, IBoard, IList, ICard } from 'core/entities';
+import { IProject, IBoard, IList, ICard } from '../../core/entities';
 import { MongoClient, ObjectID } from 'mongodb';
 import {
   AddProjectGatewayError,
@@ -12,8 +12,8 @@ import {
   EditProjectGatewayError,
   GetProjectGatewayError,
   ProjectEntityGateway,
-} from 'core/usecases/project';
-import { ProjectResponse } from 'core/usecases/project/getProject/GetProjectResponseDTO';
+} from '../../core/usecases/project';
+import { ProjectResponse } from '../../core/usecases/project/getProject/GetProjectResponseDTO';
 
 export type Collection = 'boards' | 'lists' | 'cards' | 'projects';
 

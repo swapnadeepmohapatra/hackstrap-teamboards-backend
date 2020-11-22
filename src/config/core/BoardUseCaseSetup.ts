@@ -5,7 +5,7 @@ import {
   DeleteBoardUseCase,
   RemoveUserUseCase,
   AddUserUseCase,
-} from 'core/usecases/board';
+} from '../../core/usecases/board';
 
 /**
  * Setsup the Use Cases of Board

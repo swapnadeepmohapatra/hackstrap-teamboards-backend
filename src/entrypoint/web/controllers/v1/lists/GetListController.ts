@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   GetListInvalidError,
   GetListRequestDTO,
   GetListUseCase,
-} from 'core/usecases/list';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/list';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class GetListController extends BaseController<GetListUseCase> {

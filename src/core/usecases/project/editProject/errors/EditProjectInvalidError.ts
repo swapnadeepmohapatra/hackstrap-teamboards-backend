@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 
 class EditProjectInvalidError extends UseCaseError {
   constructor(obj: unknown) {

@@ -2,7 +2,7 @@
 
 import { Application, default as express } from 'express';
 import cors from 'cors';
-import { Logger } from 'src/utils';
+import { Logger } from '../../utils';
 import {
   BoardRouter,
   ProjectRouter,

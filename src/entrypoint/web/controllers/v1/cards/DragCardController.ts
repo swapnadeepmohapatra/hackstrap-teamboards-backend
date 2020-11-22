@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   DragCardInvalidError,
   DragCardRequestDTO,
   DragCardUseCase,
-} from 'core/usecases/card';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/card';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class DragCardController extends BaseController<DragCardUseCase> {

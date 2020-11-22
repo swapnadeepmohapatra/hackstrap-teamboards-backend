@@ -1,4 +1,4 @@
-import { Result } from 'core/definition';
+import { Result } from '../../../definition';
 import { RemoveUserGatewayError, RemoveUserInvalidError } from './errors';
 
 type RemoveUserResponseDTO = Result<

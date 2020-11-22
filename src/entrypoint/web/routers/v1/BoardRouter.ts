@@ -7,8 +7,8 @@ import {
   GetBoardController,
   RemoveUserController,
   AddUserController,
-} from 'entrypoint/web';
-import BaseRouter from 'entrypoint/web/definitions/Router';
+} from '../../../../entrypoint/web';
+import BaseRouter from '../../../../entrypoint/web/definitions/Router';
 import { Router } from 'express';
 
 class BoardRouter implements BaseRouter {

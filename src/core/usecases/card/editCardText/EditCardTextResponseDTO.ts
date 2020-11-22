@@ -1,4 +1,4 @@
-import { Result } from 'core/definition';
+import { Result } from '../../core/definition';
 import { EditCardTextGatewayError, EditCardTextInvalidError } from './errors';
 
 type EditCardTextResponseDTO = Result<

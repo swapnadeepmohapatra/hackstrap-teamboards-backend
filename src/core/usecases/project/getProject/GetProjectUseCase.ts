@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
+import { Result, UseCase } from '../../../definition';
 import { GetProjectRequestDTO } from '.';
 import ProjectEntityGateway from '../ProjectEntityGateway';
 import { GetProjectGatewayError, GetProjectInvalidError } from './errors';

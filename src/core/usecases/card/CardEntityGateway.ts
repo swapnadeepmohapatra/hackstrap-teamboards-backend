@@ -1,4 +1,4 @@
-import { ICard } from 'core/entities';
+import { ICard } from '../../../core/entities';
 import { ObjectID } from 'mongodb';
 import { AddCardGatewayError } from './addCard';
 import { DeleteCardGatewayError } from './deleteCard';

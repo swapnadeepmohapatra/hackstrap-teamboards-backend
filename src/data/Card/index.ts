@@ -4,13 +4,13 @@
 /* eslint-disable require-jsdoc */
 
 import { DB_URL } from '../../config';
-import { IBoard, IProject, IList, ICard } from 'core/entities';
+import { IBoard, IProject, IList, ICard } from '../../core/entities';
 import { MongoClient, ObjectID } from 'mongodb';
 import {
   CardEntityGateway,
   DeleteCardGatewayError,
   AddCardGatewayError,
-} from 'core/usecases/Card';
+} from '../../core/usecases/Card';
 
 export type Collection = 'boards' | 'lists' | 'cards' | 'projects';
 

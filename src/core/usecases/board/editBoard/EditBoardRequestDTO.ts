@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
 /* eslint-disable-next-line @typescript-eslint/no-unsafe-call */
-import { RequestDTO } from 'core/definition';
+import { RequestDTO } from '../../../definition';
 
 class EditBoardRequestDTO implements RequestDTO {
   body: any;

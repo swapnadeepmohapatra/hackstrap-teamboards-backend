@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
 import { DB_URL } from '../../config';
-import { IBoard, IProject, IList, ICard } from 'core/entities';
+import { IBoard, IProject, IList, ICard } from '../../core/entities';
 import { MongoClient, ObjectID } from 'mongodb';
 import {
   BoardEntityGateway,
@@ -9,8 +9,8 @@ import {
   EditBoardGatewayError,
   GetBoardGatewayError,
   AddBoardGatewayError,
-} from 'core/usecases/board';
-import { BoardResponse } from 'core/usecases/board/getBoard/GetBoardResponseDTO';
+} from '../../core/usecases/board';
+import { BoardResponse } from '../../core/usecases/board/getBoard/GetBoardResponseDTO';
 
 export type Collection = 'boards' | 'lists' | 'cards' | 'projects';
 

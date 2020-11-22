@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
-import { DeleteBoardUseCase } from 'core/usecases/board';
+import { UseCaseError } from '../../../../../core/definition';
+import { DeleteBoardUseCase } from '../../../../../core/usecases/board';
 import {
   DeleteBoardInvalidError,
   DeleteBoardRequestDTO,
-} from 'core/usecases/Board';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/Board';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class DeleteBoardController extends BaseController<DeleteBoardUseCase> {

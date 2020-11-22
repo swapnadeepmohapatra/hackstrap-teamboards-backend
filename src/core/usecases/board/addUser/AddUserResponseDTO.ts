@@ -1,4 +1,4 @@
-import { Result } from 'core/definition';
+import { Result } from '../../../../core/definition';
 import { AddUserGatewayError, AddUserInvalidError } from './errors';
 
 type AddUserResponseDTO = Result<

@@ -1,4 +1,4 @@
-import { Result } from 'core/definition';
+import { Result } from '../../../definition';
 import { EditBoardGatewayError, EditBoardInvalidError } from './errors';
 
 type EditBoardResponseDTO = Result<

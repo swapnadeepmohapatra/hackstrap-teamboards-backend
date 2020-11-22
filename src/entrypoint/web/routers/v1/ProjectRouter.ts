@@ -1,14 +1,14 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable new-cap */
 import { DEFAULT_ROUTE } from '../../../../config';
+import { Router } from 'express';
 import {
   AddProjectController,
   DeleteProjectController,
   EditProjectController,
   GetProjectController,
-} from 'entrypoint/web';
-import BaseRouter from 'entrypoint/web/definitions/Router';
-import { Router } from 'express';
+} from '../../../../entrypoint/web';
+import BaseRouter from '../../../../entrypoint/web/definitions/Router';
 
 class ProjectRouter implements BaseRouter {
   private router: Router;

@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   RemoveUserInvalidError,
   RemoveUserRequestDTO,
   RemoveUserUseCase,
-} from 'core/usecases/board';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/board';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class RemoveUserController extends BaseController<RemoveUserUseCase> {

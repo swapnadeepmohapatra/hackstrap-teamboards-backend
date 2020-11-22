@@ -1,4 +1,4 @@
-import { IBoard } from 'core/entities';
+import { IBoard } from '../../../core/entities';
 import { ObjectID } from 'mongodb';
 import { AddBoardGatewayError } from './addBoard';
 import { AddUserGatewayError } from './addUser';

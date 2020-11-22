@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   EditListInvalidError,
   EditListRequestDTO,
   EditListUseCase,
-} from 'core/usecases/List/editList';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/List/editList';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class EditListController extends BaseController<EditListUseCase> {

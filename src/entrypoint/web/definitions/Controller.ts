@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable valid-jsdoc */
 /* eslint-disable require-jsdoc */
-import { UseCase } from 'core/definition';
+import { UseCase } from '../../../core/definition';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { Logger } from 'src/utils';
 /**

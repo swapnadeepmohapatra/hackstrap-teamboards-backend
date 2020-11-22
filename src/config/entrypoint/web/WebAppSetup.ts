@@ -1,10 +1,10 @@
-import { ExpressApp, ExpressAppConfig } from 'entrypoint/web';
+import { ExpressApp, ExpressAppConfig } from '../../../entrypoint/web';
 import {
   BoardRouter,
   CardRouter,
   ListRouter,
   ProjectRouter,
-} from 'entrypoint/web/routers/v1';
+} from '../../../entrypoint/web/routers/v1';
 
 /**
  * WebAppSetup class is the class that takes in all the routers

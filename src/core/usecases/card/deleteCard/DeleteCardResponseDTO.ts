@@ -1,4 +1,4 @@
-import { Result } from 'core/definition';
+import { Result } from '../../core/definition';
 import { DeleteCardGatewayError, DeleteCardInvalidError } from './errors';
 
 type DeleteCardResponseDTO = Result<

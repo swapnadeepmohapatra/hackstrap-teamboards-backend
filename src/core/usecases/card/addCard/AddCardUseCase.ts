@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
-import { ICard } from 'core/entities';
+import { Result, UseCase } from '../../../definition';
+import { ICard } from '../../../entities';
 import { ObjectID } from 'mongodb';
 import CardEntityGateway from '../CardEntityGateway';
 import AddCardRequestDTO from './AddCardRequestDTO';

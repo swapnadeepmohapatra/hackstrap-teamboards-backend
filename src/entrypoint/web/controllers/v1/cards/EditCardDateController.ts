@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
-import { EditCardDateUseCase } from 'core/usecases/card';
+import { UseCaseError } from '../../../../../core/definition';
+import { EditCardDateUseCase } from '../../../../../core/usecases/card';
 import {
   EditCardDateInvalidError,
   EditCardDateRequestDTO,
-} from 'core/usecases/card';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/card';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class EditCardDateController extends BaseController<EditCardDateUseCase> {

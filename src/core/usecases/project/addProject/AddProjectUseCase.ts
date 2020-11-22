@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
-import { IProject } from 'core/entities';
+import { Result, UseCase } from '../../../../core/definition';
+import { IProject } from '../../../../core/entities';
 import ProjectEntityGateway from '../ProjectEntityGateway';
 import AddProjectRequestDTO from './AddProjectRequestDTO';
 import AddProjectResponseDTO from './AddProjectResponseDTO';

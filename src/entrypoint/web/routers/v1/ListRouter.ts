@@ -2,14 +2,14 @@
 /* eslint-disable new-cap */
 import { DEFAULT_ROUTE } from '../../../../config';
 import { Router } from 'express';
-import BaseRouter from 'entrypoint/web/definitions/Router';
 import {
   AddListController,
   DeleteListController,
   DragListController,
   EditListController,
   GetListController,
-} from 'entrypoint/web/controllers/v1/lists';
+} from '../../../../entrypoint/web';
+import BaseRouter from '../../../../entrypoint/web/definitions/Router';
 
 class ListRouter implements BaseRouter {
   private router: Router;

@@ -3,7 +3,7 @@ import {
   DeleteProjectUseCase,
   EditProjectUseCase,
   GetProjectUseCase,
-} from 'core/usecases/project';
+} from '../../../core/usecases/project';
 import {
   GetProjectController,
   AddProjectController,
@@ -25,14 +25,14 @@ import {
   EditCardDateController,
   EditCardPriorityController,
   DragCardController,
-} from 'entrypoint/web/';
+} from '../../../entrypoint/web';
 import {
   AddBoardUseCase,
   AddUserUseCase,
   DeleteBoardUseCase,
   GetBoardUseCase,
   RemoveUserUseCase,
-} from 'core/usecases/board';
+} from '../../../core/usecases/board';
 import {
   AddCardUseCase,
   DeleteCardUseCase,
@@ -40,14 +40,14 @@ import {
   EditCardDateUseCase,
   EditCardPriorityUseCase,
   EditCardTextUseCase,
-} from 'core/usecases/card';
+} from '../../../core/usecases/card';
 import {
   AddListUseCase,
   DeleteListUseCase,
   DragListUseCase,
   EditListUseCase,
   GetListUseCase,
-} from 'core/usecases/list';
+} from '../../../core/usecases/list';
 
 /**
  * ControllerSetup is the class thjat setsup all the controllers.

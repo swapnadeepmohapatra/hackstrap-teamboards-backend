@@ -7,7 +7,7 @@ import {
   EditCardDateUseCase,
   EditCardPriorityUseCase,
   EditCardTextUseCase,
-} from 'core/usecases/Card';
+} from '../../core/usecases/card';
 
 class CardUseCaseSetup {
   static addCardUseCase(cardEntityGateway: CardEntityGateway): AddCardUseCase {

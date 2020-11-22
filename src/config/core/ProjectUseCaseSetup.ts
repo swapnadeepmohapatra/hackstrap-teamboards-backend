@@ -5,7 +5,7 @@ import {
   EditProjectUseCase,
   GetProjectUseCase,
   ProjectEntityGateway,
-} from 'core/usecases/project';
+} from '../../core/usecases/project';
 
 class ProjectUseCaseSetup {
   static addProjectUseCase(

@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   GetProjectInvalidError,
   GetProjectRequestDTO,
   GetProjectUseCase,
-} from 'core/usecases/project';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/project';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class GetProjectController extends BaseController<GetProjectUseCase> {

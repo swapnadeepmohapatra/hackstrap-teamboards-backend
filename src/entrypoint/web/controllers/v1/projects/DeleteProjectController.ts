@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-import { UseCaseError } from 'core/definition';
+import { UseCaseError } from '../../../../../core/definition';
 import {
   DeleteProjectInvalidError,
   DeleteProjectRequestDTO,
   DeleteProjectUseCase,
-} from 'core/usecases/project';
-import BaseController from 'entrypoint/web/definitions/Controller';
+} from '../../../../../core/usecases/project';
+import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
 class DeleteProjectController extends BaseController<DeleteProjectUseCase> {

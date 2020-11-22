@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable require-jsdoc */
-import { Result, UseCase } from 'core/definition';
+import { Result, UseCase } from '../../../../core/definition';
 import CardEntityGateway from '../CardEntityGateway';
 import DeleteCardRequestDTO from './DeleteCardRequestDTO';
 import DeleteCardResponseDTO from './DeleteCardResponseDTO';
