@@ -7,7 +7,7 @@ import {
   DragListInvalidError,
   DragListRequestDTO,
   DragListUseCase,
-} from '../../../../../core/usecases/List';
+} from '../../../../../core/usecases/list';
 import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 

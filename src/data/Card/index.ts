@@ -10,7 +10,7 @@ import {
   CardEntityGateway,
   DeleteCardGatewayError,
   AddCardGatewayError,
-} from '../../core/usecases/Card';
+} from '../../core/usecases/card';
 
 export type Collection = 'boards' | 'lists' | 'cards' | 'projects';
 

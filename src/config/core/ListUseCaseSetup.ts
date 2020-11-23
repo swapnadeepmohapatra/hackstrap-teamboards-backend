@@ -6,7 +6,7 @@ import {
   GetListUseCase,
   DeleteListUseCase,
   DragListUseCase,
-} from '../../core/usecases/List';
+} from '../../core/usecases/list';
 
 class ListUseCaseSetup {
   static addListUseCase(listEntityGateway: ListEntityGateway): AddListUseCase {

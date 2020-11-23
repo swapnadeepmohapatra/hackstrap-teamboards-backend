@@ -62,7 +62,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongodb": "^3.6.2",
-    "nodejs-snowflake": "^1.5.1"
+    "mongodb": "^3.6.2"
   }
 }

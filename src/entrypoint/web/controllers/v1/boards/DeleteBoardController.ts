@@ -4,7 +4,7 @@ import { DeleteBoardUseCase } from '../../../../../core/usecases/board';
 import {
   DeleteBoardInvalidError,
   DeleteBoardRequestDTO,
-} from '../../../../../core/usecases/Board';
+} from '../../../../../core/usecases/board';
 import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 

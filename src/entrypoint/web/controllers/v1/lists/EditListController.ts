@@ -7,7 +7,7 @@ import {
   EditListInvalidError,
   EditListRequestDTO,
   EditListUseCase,
-} from '../../../../../core/usecases/List/editList';
+} from '../../../../../core/usecases/list';
 import BaseController from '../../../../../entrypoint/web/definitions/Controller';
 import { Request, Response } from 'express';
 
