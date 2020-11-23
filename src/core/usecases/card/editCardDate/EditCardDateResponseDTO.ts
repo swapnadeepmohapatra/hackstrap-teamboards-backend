@@ -1,4 +1,4 @@
-import { Result } from '../../core/definition';
+import { Result } from '../../../definition';
 import { EditCardDateGatewayError, EditCardDateInvalidError } from './errors';
 
 type EditCardDateResponseDTO = Result<

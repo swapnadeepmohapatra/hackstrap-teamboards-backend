@@ -1,4 +1,4 @@
-import { UseCaseError } from '..';
+import { UseCaseError } from '../../definition';
 
 test('message property should have custom message', () => {
   const msg = `A random error message`;

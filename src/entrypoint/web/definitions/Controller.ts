@@ -5,7 +5,7 @@
 /* eslint-disable require-jsdoc */
 import { UseCase } from '../../../core/definition';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
-import { Logger } from 'src/utils';
+import { Logger } from '../../../utils';
 /**
  * @param  {RequestHandler} middleware
  */

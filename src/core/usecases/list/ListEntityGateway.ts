@@ -1,4 +1,4 @@
-import { IList } from '../../core/entities';
+import { IList } from '../../../core/entities';
 import { ObjectID } from 'mongodb';
 import { AddListGatewayError } from './addList';
 import { DeleteListGatewayError } from './deleteList';

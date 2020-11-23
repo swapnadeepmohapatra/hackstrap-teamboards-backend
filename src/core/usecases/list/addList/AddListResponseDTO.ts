@@ -1,4 +1,4 @@
-import { Result } from '../../core/definition';
+import { Result } from '../../../definition';
 import { AddListGatewayError, AddListInvalidError } from './errors';
 
 type AddListResponseDTO = Result<

@@ -1,4 +1,4 @@
-import { Result, UseCaseError } from '..';
+import { Result, UseCaseError } from '../../definition';
 
 test('#getValue when the value is present should return the value', () => {
   const val1 = 'success';

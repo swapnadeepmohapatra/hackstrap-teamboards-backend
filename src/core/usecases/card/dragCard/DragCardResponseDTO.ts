@@ -1,4 +1,4 @@
-import { Result } from '../../core/definition';
+import { Result } from '../../../definition';
 import { DragCardGatewayError, DragCardInvalidError } from './errors';
 
 type DragCardResponseDTO = Result<

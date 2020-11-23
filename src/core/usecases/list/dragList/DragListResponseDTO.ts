@@ -1,4 +1,4 @@
-import { Result } from '../../core/definition';
+import { Result } from '../../../../core/definition';
 import { DragListGatewayError, DragListInvalidError } from './errors';
 
 type DragListResponseDTO = Result<

@@ -1,4 +1,4 @@
-import { Result } from '../../core/definition';
+import { Result } from '../../../definition';
 import { AddProjectGatewayError, AddProjectInvalidError } from './errors';
 
 type AddProjectResponseDTO = Result<

@@ -1,4 +1,4 @@
-import { Result } from '../../core/definition';
+import { Result } from '../../../definition';
 import { GetListGatewayError } from './errors';
 
 export interface ListResponse {
