@@ -325,6 +325,63 @@
 
 ---
 
+### Edit Card Text
+
+`http://localhost:1212/teamboards/card/edit-text`
+
+- Method
+
+`PATCH`
+
+- Request Body
+
+```json
+{
+  "cardID": "5f94340002b9938384d66b0d",
+  "cardText": "New Card - 1"
+}
+```
+
+---
+
+### Edit Card Due Date
+
+`http://localhost:1212/teamboards/card/edit-date`
+
+- Method
+
+`PATCH`
+
+- Request Body
+
+```json
+{
+  "cardID": "5f94340002b9938384d66b0d",
+  "dueDate": "2020-07-06T06:16:09.899Z"
+}
+```
+
+---
+
+### Edit Card Priority
+
+`http://localhost:1212/teamboards/card/edit-priority`
+
+- Method
+
+`PATCH`
+
+- Request Body
+
+```json
+{
+  "cardID": "5f94340002b9938384d66b0d",
+  "priority": 1
+}
+```
+
+---
+
 ### Drag Cards
 
 `http://localhost:1212/teamboards/card/drag`
