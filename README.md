@@ -92,7 +92,7 @@
 
 ### Delete Project
 
-`http://localhost:1212/teamboards/project/delete`
+`https://api.hackstrap.com/teamboards/project/delete`
 
 - Method
 
@@ -190,7 +190,7 @@
 
 ### Get Lists
 
-`http://localhost:1212/teamboards/list`
+`https://api.hackstrap.com/teamboards/list`
 
 - Method
 
@@ -231,7 +231,7 @@
 
 ### Add new List
 
-`http://localhost:1212/teamboards/list/add`
+`https://api.hackstrap.com/teamboards/list/add`
 
 - Method
 
@@ -250,7 +250,7 @@
 
 ### Edit List Title
 
-`http://localhost:1212/teamboards/list/edit`
+`https://api.hackstrap.com/teamboards/list/edit`
 
 - Method
 
@@ -269,7 +269,7 @@
 
 ### Drag Lists
 
-`http://localhost:1212/teamboards/list/drag`
+`https://api.hackstrap.com/teamboards/list/drag`
 
 - Method
 
@@ -289,7 +289,7 @@
 
 ### Delete Lisst
 
-`http://localhost:1212/teamboards/list/delete`
+`https://api.hackstrap.com/teamboards/list/delete`
 
 - Method
 
@@ -308,7 +308,7 @@
 
 ### Add new card
 
-`http://localhost:1212/teamboards/card/add`
+`https://api.hackstrap.com/teamboards/card/add`
 
 - Method
 
@@ -327,7 +327,7 @@
 
 ### Edit Card Text
 
-`http://localhost:1212/teamboards/card/edit-text`
+`https://api.hackstrap.com/teamboards/card/edit-text`
 
 - Method
 
@@ -346,7 +346,7 @@
 
 ### Edit Card Due Date
 
-`http://localhost:1212/teamboards/card/edit-date`
+`https://api.hackstrap.com/teamboards/card/edit-date`
 
 - Method
 
@@ -365,7 +365,7 @@
 
 ### Edit Card Priority
 
-`http://localhost:1212/teamboards/card/edit-priority`
+`https://api.hackstrap.com/teamboards/card/edit-priority`
 
 - Method
 
@@ -384,7 +384,7 @@
 
 ### Drag Cards
 
-`http://localhost:1212/teamboards/card/drag`
+`https://api.hackstrap.com/teamboards/card/drag`
 
 - Method
 
@@ -405,7 +405,7 @@
 
 ### Delete Card
 
-`http://localhost:1212/teamboards/card/delete`
+`https://api.hackstrap.com/teamboards/card/delete`
 
 - Method
 
