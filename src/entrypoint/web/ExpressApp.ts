@@ -30,8 +30,10 @@ class ExpressApp {
   }
 
   private configApp(): void {
+    this.app.use(cors({ origin: true, credentials: true }));
+    this.app.options("*", cors({ origin: true, credentials: true }));
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(cors());
     this.app.use(this.projectRouter.getRouter());
     this.app.use(this.boardRouter.getRouter());
     this.app.use(this.listRouter.getRouter());
