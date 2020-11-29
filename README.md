@@ -152,7 +152,7 @@
 
 ### Add New Board
 
-`https://api.hackstrap.com/teamboards/board/project/add`
+`https://api.hackstrap.com/teamboards/board/add`
 
 - Method
 
